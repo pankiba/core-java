@@ -1,4 +1,4 @@
-#### Why Generics
+#### **Generics**
 
 - Stronger type checks at compile time
 - Enables to implement generic algorithms
