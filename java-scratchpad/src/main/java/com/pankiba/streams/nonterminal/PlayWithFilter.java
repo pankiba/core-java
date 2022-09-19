@@ -7,10 +7,8 @@ import com.pankiba.util.ApplicationUtils;
 
 /**
  * 
- * @author barvepan
- *
- *         filter() method is an intermediate operation of the Stream interface that allows us to filter elements of a
- *         stream that match a given Predicate:
+ * filter() method is an intermediate operation of the Stream interface that allows us to filter elements of a stream
+ * that match a given Predicate:
  */
 public class PlayWithFilter {
 	public static void main(String[] args) {

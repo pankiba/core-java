@@ -24,6 +24,8 @@ public class PlayWithLowerBoundedWildCard {
 
 	/**
 	 * Use super when you want to add values to collection
+	 * 
+	 * ? super Number Integer to "any type that is an Integer type or its super type"
 	 */
 	public static void numsUpTo(Integer number, List<? super Integer> list) {
 

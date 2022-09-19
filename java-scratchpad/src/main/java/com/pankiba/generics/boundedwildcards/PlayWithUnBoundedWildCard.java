@@ -21,6 +21,6 @@ public class PlayWithUnBoundedWildCard {
 	}
 
 	private static void printList(List<?> list) {
-		log.info(" {} ", list);
+		
 	}
 }
