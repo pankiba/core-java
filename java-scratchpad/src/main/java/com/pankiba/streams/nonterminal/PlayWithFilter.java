@@ -1,29 +1,40 @@
 package com.pankiba.streams.nonterminal;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.pankiba.model.Employee;
 import com.pankiba.util.ApplicationUtils;
 
-/**
- * 
- * filter() method is an intermediate operation of the Stream interface that allows us to filter elements of a stream
- * that match a given Predicate:
- */
 public class PlayWithFilter {
+
 	public static void main(String[] args) {
 
 		List<Employee> employeeList = ApplicationUtils.getTestData();
 
-		ApplicationUtils.logHeader("Obtain a list of employee's who are Developer's");
+		ApplicationUtils.logHeader("filter - traditional");
+		employeeList.stream().filter(new EmployeePredicate()).forEach(new EmployeeConsumer());
 
-		employeeList.stream().filter(employee -> employee.getGrade().getLevel().equals("Developer"))
-				.forEach(System.out::println);
+		ApplicationUtils.logHeader("filter - lambda expression");
+		employeeList.stream().filter(employee -> employee.getSalary() > 20000L).forEach(System.out::println);
 
-		ApplicationUtils.logHeader("Obtain a list of employee's who are Developer's and female's");
+		ApplicationUtils.logHeader("filter - composed predicate - logical AND");
 
-		employeeList.stream().filter(employee -> employee.getGrade().getLevel().equals("Developer"))
-				.filter(employee -> employee.getGender().equals("F")).forEach(System.out::println);
+		Predicate<Employee> predicate1 = employee -> employee.getSalary() > 20000L;
+		Predicate<Employee> predicate2 = employee -> employee.getGender().equals("F");
 
+		employeeList.stream().filter(predicate1.and(predicate2)).forEach(System.out::println);
+
+		ApplicationUtils.logHeader("filter - composed predicate - logical OR");
+		employeeList.stream().filter(predicate1.or(predicate2)).forEach(System.out::println);
+
+	}
+}
+
+class EmployeePredicate implements Predicate<Employee> {
+
+	@Override
+	public boolean test(Employee employee) {
+		return employee.getSalary() > 20000L;
 	}
 }

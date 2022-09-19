@@ -31,7 +31,6 @@ public class ApplicationUtils {
 			log.error("Error while loading data from josn file");
 			exception.printStackTrace();
 		}
-
 		return null;
 	}
 
